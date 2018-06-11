@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">RxJava&amp;RealmExercise</string>
+    <string name="edit">EDIT</string>
+    <string name="full_name">Full name</string>
+    <string name="image_url">Image URL</string>
+    <string name="email">Email</string>
+    <string name="save">Save</string>
+</resources>
