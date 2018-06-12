@@ -18,12 +18,14 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         Realm realm = Realm.getDefaultInstance();
-        realm.beginTransaction();
-        User user=new User(0,
-                "https://scontent.fhfa2-1.fna.fbcdn.net/v/t1.0-9/22853045_10212600968051136_592017967170347410_n.jpg?_nc_cat=0&oh=9e2b57dad3d5f60701c53fb08e85c61f&oe=5BA901E3",
-                "monkey","tamara@moveo.co.il");
-        realm.insertOrUpdate(user);
-        realm.commitTransaction();
+        if(realm.where(User.class).findAll().size()==0) {
+            User user = new User(0,
+                    "https://scontent.fhfa2-1.fna.fbcdn.net/v/t1.0-9/22853045_10212600968051136_592017967170347410_n.jpg?_nc_cat=0&oh=9e2b57dad3d5f60701c53fb08e85c61f&oe=5BA901E3",
+                    "monkey", "tamara@moveo.co.il");
+            realm.beginTransaction();
+            realm.insertOrUpdate(user);
+            realm.commitTransaction();
+        }
         realm.close();
         Observable.timer(4, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<Long>() {
